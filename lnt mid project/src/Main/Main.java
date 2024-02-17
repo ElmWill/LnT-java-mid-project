@@ -193,11 +193,12 @@ public class Main {
 		String gender;
 		String rank;
 		double pay = 0;
-		String id = GenerateID();
+		String id = null;
 		
 		System.out.println("Enter the number of the Employee you want to update: ");
 		num = scan.nextInt();
 		Employee employees = EmployeeData.get(num-1);
+		id = employees.getId();
 		scan.nextLine();
 		
 		System.out.print("Enter Employee Name [>= 3]: ");

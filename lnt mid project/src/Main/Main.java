@@ -51,13 +51,15 @@ public class Main {
 					break;
 				default:
 					System.out.println("that is not an option");
+					Return();
 					break;
 			}
 			
 		}
 	}
 	
-	public void Return() {
+	public void Return() {//to clear screen
+		try {
 		String console = null;
 		do{
 			System.out.println("ENTER to return");
@@ -68,9 +70,12 @@ public class Main {
 			System.out.println("");
 		}
 		
+	}catch (Exception e) {
+		System.out.println("An error occurred: " + e.getMessage());
 	}
+}
 	
-	public String GenerateID() {
+	public String GenerateID() {//to generate random id using append
 		StringBuilder id = new StringBuilder();
 		for(int i = 0; i < 7; i++) {
 			if(i < 2) id.append(Alphabet.charAt(random.nextInt(num)));
@@ -80,7 +85,8 @@ public class Main {
 		return id.toString();
 	}
 	
-	public void InputData() {
+	public void InputData() {//function to input data
+		try {
 		String name;
 		String gender;
 		String rank;
@@ -156,10 +162,14 @@ public class Main {
 			}
 			System.out.println("");
 		}
+	}catch (Exception e) {
+		System.out.println("An error occurred: " + e.getMessage());
 	}
+}
 	
 	//to sort by name in ascending order
 	public void BubbleSort(ArrayList<Employee> EmployeeData) {
+		try {
 		int n = EmployeeData.size();
 		for(int i = 1; i < n; i++) {
 			for(int j = i; j < n; j++) {
@@ -170,10 +180,14 @@ public class Main {
 				}
 			}
 		}
+	}catch (Exception e) {
+		System.out.println("An error occurred: " + e.getMessage());
 	}
+}
 	//function to view the data
 	public void ViewData() {
-		BubbleSort(EmployeeData);
+		try {
+		BubbleSort(EmployeeData);//sort the data
 		System.out.println("|----|-----------------|------------------------------|---------------|---------------|---------------|");
 		System.out.println("|No  |Employee id      |Employee Name                 |Gender         |Rank           |Pay            |");
 		System.out.println("|----|-----------------|------------------------------|---------------|---------------|---------------|");
@@ -184,9 +198,13 @@ public class Main {
 			i, employees.getId(), employees.getName(), employees.getGender(), employees.getRank(), (int)employees.getPay());
 		}
 		System.out.println("|----|-----------------|------------------------------|---------------|---------------|---------------|");
+	}catch (Exception e) {
+		System.out.println("An error occurred: " + e.getMessage());
 	}
+}
 	//function to update the data
 	public void UpdateData() {
+		try {
 		ViewData();
 		int num;
 		String name;
@@ -286,7 +304,7 @@ public class Main {
 		}
 		else if((countAdmin - 1) % 3 == 0 && countAdmin - 1 != 0 && rank.equals("Admin")) {
 			int counter = 1;
-			System.out.print("a 5% bonus has been added to the employee with the id");
+			System.out.print("a 5% bonus has been added to the employee with the id" + id);
 			for(Employee employeess: EmployeeData) {
 				if(counter > (countAdmin - 1)) break;
 				if(employeess.getRank().equals("Admin")) {
@@ -303,26 +321,34 @@ public class Main {
 			
 		Employee newEmployee = new Employee(name, gender, rank, id, pay);
 		EmployeeData.set(num-1, newEmployee);
+		
+		}catch (Exception e) {
+			System.out.println("An error occurred: " + e.getMessage());
+		}
 	}
 	
-	public void DeleteData() {
+	public void DeleteData() {//function to delete data
+		try {
 		ViewData();
 		int num;
 		
 		System.out.println("Enter the Number of the Employee You Want to Delete: ");
 		num = scan.nextInt();
 		scan.nextLine();
-		EmployeeData.remove(num-1);
+		EmployeeData.remove(num-1);//-1 so the number still matches
 		System.out.println("Successfully Deleted");
+	}catch (Exception e) {
+		System.out.println("An error occurred: " + e.getMessage());
 	}
+}
 	
 	public int Menu(Scanner scan) {
 		System.out.println("Welcome to PT ChipiChapa");
 		System.out.println("What do you want to do?");
-		System.out.println("1. Insert data karyawan");
-		System.out.println("2. View data karyawan");
-		System.out.println("3. Update data karyawan");
-		System.out.println("4. Delete data karyawan");
+		System.out.println("1. Insert Employee Data");
+		System.out.println("2. View Employee Data");
+		System.out.println("3. Update Employee Data");
+		System.out.println("4. Delete Employee Data");
 		System.out.println("5. Exit program");
 		return scan.nextInt();
 	}
